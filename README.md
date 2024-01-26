@@ -2,6 +2,8 @@
 
 ### Description
 
+<img src ="https://raw.githubusercontent.com/Leonardojul/NLP-Insight-extractor/main/Collection of documents.png" width="100%" height="100%">
+
 Description:
 The Insight Extractor Engine leverages the Language-agnostic BERT Sentence Encoder (LaBSE) to efficiently categorize and subcategorize large document collections, allowing its users to query a document collection on topic and sub-topic.
 
@@ -12,9 +14,8 @@ Originally developed to aid Basic-Fit in understanding customer inquiries, this 
 **INDEX**
 1. [How does it work?](#how-does-it-work)
     - [Data collection](#data-collection)
-    - [Pre-processing](#pre-processing)
-    - [Hyperparameter selection and forecasting](#hyperparameter-selection-and-forecasting)
-    - [Post-processing](#post-processing)
+    - [Pre-processing and embedding](#pre-processing-and-embedding)
+    - [Topic enquiring](#topic-definition-and-enquiring)
 2. [Delivery and reporting](#delivery-and-reporting)
 3. [Conclussion](#conclussion)
 
@@ -30,7 +31,7 @@ The Forecasting System is a series of processes and subprocesses that:
 
 The following flowchart summarizes the building blocks of the system:
 
-<img src ="https://raw.githubusercontent.com/Leonardojul/Forecasting-System/main/FC_System.png" width="100%" height="100%">
+
 
 ### Data collection
 
@@ -53,7 +54,7 @@ from azure.storage.blob import BlobServiceClient, __version__
 import requests
 ```
 
-### Pre-processing
+### Pre-processing and embedding
 
 Before using the historical data to produce any forecasts we need to make sure that all the data present in the time-series is representative of the distribution we are working with and, therefore, we can extrapolate it to the future. For that we will remove any outliers. Considering that we are working with a poisson distributio, we will divide these outliers into two categories:
 
@@ -102,7 +103,7 @@ As we can see, on the third Wednesday of this time series we got an abnormally l
 
 <img src="https://raw.githubusercontent.com/Leonardojul/Forecasting-System/main/holiday-graph-corrected.jpg" width="100%" height="100%">
 
-### Hyperparameter selection and forecasting
+### Topic definition and enquiring
 
 After our data is clear from any undesired effects that could pollute our forecasts it is time to fit a model and forecast. A question often asked in this regard is what is the besst set of hyperparameters to fit our model with. The statsmodels package in Python provides an automatic way to finding these out, which is the function auto_arima. Since we wanted to implement our own testing criteria, we decided to create our own auto s-arima function:
 
