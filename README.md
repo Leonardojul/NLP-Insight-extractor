@@ -13,8 +13,8 @@ Originally developed to aid Basic-Fit in understanding customer inquiries, this 
 
 **INDEX**
 1. [How does it work?](#how-does-it-work)
-    - [Data collection](#data-collection)
-    - [Pre-processing and embedding](#pre-processing-and-embedding)
+    - [Data preparation](#data-preparation)
+    - [Corpus querying](#corpus-querying)
     - [Topic enquiring](#topic-definition-and-enquiring)
 2. [Delivery and reporting](#delivery-and-reporting)
 3. [Conclussion](#conclussion)
@@ -22,7 +22,12 @@ Originally developed to aid Basic-Fit in understanding customer inquiries, this 
 
 ### How does it work?
 
-The Forecasting System is a series of processes and subprocesses that:
+The NLP Insight Extractor is an unsupervised text classification model that returns matching sets of documents from a user defined set of keywords. In practice and from the user's perspective, this works like querying a corpus of documents for topic and sub-topic segmentation or finding document similarities. Some applicable uses cases are:
+* Finding trends or common topics in collections of user reviews
+* E-mail or chat-transcript segmentation or classification
+* Trending topic identification in collections of social media posts
+
+
 1. Gets the data from different places
 2. Processes this data to remove any artifacts or effects we do not want to be carried over to the forecast
 3. Produces a forecast for a given timeframe
@@ -33,11 +38,18 @@ The following flowchart summarizes the building blocks of the system:
 
 
 
-### Data collection
+### Data preparation
+* Loading
+* Cleaning
+* Embedding
+    * Tokenization
+    * Sentece Embedding
+    * Pooling
+* Saving embeddings
 
 In an ideal scenario, all the data we need four our data science project would be directly ready for us to use. As many times, this was not the case for us and the channels and languages we needed to forecast come from different places, requiring different methods and integrations to get each one of them.
 
-For security reasons I will not be sharing the speecifics of how this data was retrieved, but suffice to say that it was distributed between:
+For security reasons I will not be sharing the specifics of how this data was retrieved, but suffice to say that it was distributed between:
 1. An internal SQL server database
 2. An Azure storage account (where there is an excel file from which we retrieve the data)
 3. A custom thir-party API
